@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RutService } from 'rut-chileno';
+import { comuna } from 'src/app/interfaces/modelos';
+import { ComunaService } from 'src/app/services/servi.service';
 
 @Component({
   selector: 'app-register-rep',
@@ -15,9 +17,11 @@ export class RegisterRepComponent implements OnInit {
   selectedAvatar!: string;
 
   //aqui entregamos los nombre de los archivos de los avatars 
-  avatars: string[] = ['bear.png', 'cat.png', 'lion.png']; 
+  avatars: string[] = ['bear.png', 'cat.png', 'lion.png','meerkat.png','panda.png','polar-bear.png','sloth.png']; 
+  // inicializar variables
+  listcomunas: comuna[] = [];
 
-  constructor(private fb: FormBuilder,private rutService: RutService) { }
+  constructor(private fb: FormBuilder,private rutService: RutService,private comunaService: ComunaService) { }
 
    //aqui se formatea el rut cuando se inserta
    formatearRut(event : Event): void {
@@ -48,8 +52,21 @@ export class RegisterRepComponent implements OnInit {
       num_calle_rep: ["", [Validators.required, Validators.pattern("^[0-9]\\d*$")]],
       contacto_Rep: ["", [Validators.required, Validators.pattern("^[0-9]{8}$")]],
       correo_rep: ["", [Validators.required,Validators.email]],
+      clave_rep: ["", [Validators.required]],
+      clave_rep_conf: ["", [Validators.required]],
       selectedAvatar: new FormControl(null)
     });
+
+    //consumir el servicio listar comunas
+    this.comunaService.getComunas().subscribe(
+      (data: { listComunas: comuna[] }) => {
+        this.listcomunas = data.listComunas;
+        console.log(this.listcomunas);
+      },
+      error => {
+        console.log(error); // Mostrar el error en la consola
+      }
+    );
   }
 
 

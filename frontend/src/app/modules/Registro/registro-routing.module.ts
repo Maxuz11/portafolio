@@ -8,6 +8,7 @@ const routes: Routes = [
         path:'vecinos',
         children:[
             { path: 'junta-vecinal', component: RegisterRepComponent }
+            
         ]
     }
 ];

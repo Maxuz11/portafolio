@@ -15,12 +15,9 @@ export class SidebarComponent implements OnInit {
   }
 
   navigate(ruta:any){
-    console.log(ruta);
-    
+    console.log(ruta);    
     this.router.navigateByUrl(ruta);
-
-
-    }
+  }
 
     
-    }
+}

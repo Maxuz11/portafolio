@@ -5,7 +5,8 @@ const db = new Sequelize({
     dialect: 'oracle',//el dialecto es el tipo de base de datos que se va a usar
     username: "c##junta_vecinal",//el usuario de la base de datos
     password: '123',//la contraseña de la base de datos
-    dialectOptions: {connectString: '(DESCRIPTION=(ADDRESS = (PROTOCOL = TCP)(HOST = NBR-CMUNOZ)(PORT = 1521))(CONNECT_DATA =(SERVER=DEDICATED)(SERVICE_NAME = XE)))'}
+    database: "ptoyecto",//nombre de la base de dato
+    dialectOptions: {connectString: '(DESCRIPTION=(ADDRESS = (PROTOCOL = TCP)(HOST = MAXUZ)(PORT = 1521))(CONNECT_DATA =(SERVER=DEDICATED)(SERVICE_NAME = XE)))'}
     
 });
 //el dialectoptions es para que se conecte a la base de datos de oracle y 

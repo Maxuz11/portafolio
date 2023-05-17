@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Comuna } from '../../../interfaces/modelos';
+import { comuna } from '../../../interfaces/modelos';
 import {ComunaService} from '../../../services/servi.service';
 
 @Component({
@@ -9,7 +9,7 @@ import {ComunaService} from '../../../services/servi.service';
 })
 export class RegisterComponent implements OnInit {
   // inicializar variables
-  listcomunas: Comuna[] = [];
+  listcomunas: comuna[] = [];
 
   constructor(
     private comunaService: ComunaService,
@@ -21,8 +21,8 @@ export class RegisterComponent implements OnInit {
 
   getComunas() {
     this.comunaService.getComunas().subscribe(
-      (data: { listcomunas: Comuna[] }) => {
-        this.listcomunas = data.listcomunas;
+      (data: { listComunas: comuna[] }) => {
+        this.listcomunas = data.listComunas;
         console.log(data);
       },
       error => {

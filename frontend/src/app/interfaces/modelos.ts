@@ -4,7 +4,7 @@ export interface Municipalidad{
 };
 
 
-export interface Comuna{
+export interface comuna{
     id_comuna: number;
     nombre: string;
 };

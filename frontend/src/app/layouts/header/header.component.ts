@@ -7,7 +7,7 @@ import { DOCUMENT } from '@angular/common'
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  user:boolean = false;
   constructor(@Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit(): void {

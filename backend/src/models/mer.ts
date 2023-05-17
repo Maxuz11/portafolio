@@ -46,23 +46,23 @@ export const JuntaVecinal = sequelize.define('JuntaVecinal', {
         primaryKey: true,
         autoIncrement: true
     },
-    nombre: {
-        type: DataTypes.STRING(30),
+    razon_social: {
+        type: DataTypes.STRING(50),
         unique: true,
         allowNull: false,
     },
-    razon_social: {
+    numero_calle: {
         type: DataTypes.INTEGER,
         unique: true,
         allowNull: false,
-    },
-    direccion: {
-        type: DataTypes.STRING(80),
+    },   
+    rut_junta: {
+        type: DataTypes.STRING,
         unique: true,
-        allowNull: false,
+        allowNull: false
     },
     },
-{
+    {
     createdAt: false,
     timestamps: false,
     tableName: 'junta_vecinal'

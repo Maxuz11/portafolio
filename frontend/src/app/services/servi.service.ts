@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import {Comuna} from '../interfaces/modelos';
+import {comuna} from '../interfaces/modelos';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +16,8 @@ export class ComunaService {
     this.myApiUrl = 'api/comunas';
   }
     //metodo para traer los comentarios y este deja listar con ngFor
-    getComunas(): Observable<{ listcomunas: Comuna[] }> {
-      return this.http.get<{ listcomunas: Comuna[] }>(`${this.myAppUrl}${this.myApiUrl}`);
+    getComunas(): Observable<{ listComunas: comuna[] }> {
+      return this.http.get<{ listComunas: comuna[] }>(`${this.myAppUrl}${this.myApiUrl}`);
     }
     
 }

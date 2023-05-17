@@ -22,7 +22,7 @@ const routes: Routes = [
   path:'registro',
   loadChildren: () => import('./modules/Registro/registro.module').then(m => m.RegistroModule)
 },
-  {path: '', redirectTo: 'reg_rep', pathMatch: 'full'},// cambiar por el componente de inicio
+  {path: '', redirectTo: 'registro', pathMatch: 'full'},// cambiar por el componente de inicio
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'certificado', component: CertificadoComponent},
@@ -40,7 +40,7 @@ const routes: Routes = [
   {path: 'editsolicitud', component: EditsolicitudComponent},
   {path: 'reports', component: ReportsComponent},
   {path: 'viewvalor', component: ViewvalorComponent},
-  {path: '**', redirectTo: 'reg_rep', pathMatch: 'full'}// cambiar por el componente de error
+  {path: '**', redirectTo: 'registro', pathMatch: 'full'}// cambiar por el componente de error
 ];
 
 @NgModule({
