@@ -15,7 +15,7 @@ export class RegisterRepComponent implements OnInit {
   submitted = false;
 
   selectedAvatar!: string;
-
+  comunaRazon!: string;
   //aqui entregamos los nombre de los archivos de los avatars 
   avatars: string[] = ['bear.png', 'cat.png', 'lion.png','meerkat.png','panda.png','polar-bear.png','sloth.png']; 
   // inicializar variables
@@ -41,6 +41,7 @@ export class RegisterRepComponent implements OnInit {
     this.parentForm = this.fb.group({
       rut_junta: ["", [Validators.required, this.rutService.validaRutForm]], // <- Aqui es donde viene el validador la funcion validaRutForm la cual retorna un null o un objeto { [key: string]: boolean } 
       nomb_junta: ["", [Validators.required]],
+      comuna_junta:[""],
       calle_junta: ["", [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]],
       num_calle_junta: ["", [Validators.required, Validators.pattern("^[0-9]\\d*$")]],
       run_rep: ["", [Validators.required, this.rutService.validaRutForm]],
@@ -67,8 +68,8 @@ export class RegisterRepComponent implements OnInit {
         console.log(error); // Mostrar el error en la consola
       }
     );
+   
   }
-
 
   onChangeAvatar() {
     this.selectedAvatar = this.parentForm.controls['selectedAvatar'].value;
@@ -79,10 +80,13 @@ export class RegisterRepComponent implements OnInit {
     this.submitted = true;
     // stop here if form is invalid
     if (this.parentForm.invalid) {
-       return;
+      const a = this.parentForm.controls['comuna_junta'].value;
+      console.log('q viene en comuna rep',a)
+      return;
     }
     else {
       const rut = this.parentForm.get('rut_junta')?.value;
+      
 
       console.log('que rut de razon ingresamos ',rut);
     }

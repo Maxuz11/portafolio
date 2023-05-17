@@ -35,7 +35,7 @@
           </div>
           <div class="col-md-4">
             <label for="comuna_junta" class="form-label">Comuna:</label>
-              <select class="form-select" id="comuna_junta" >
+              <select class="form-select" id="comuna_junta" formControlName="comuna_junta">
                 <option *ngFor="let comuna of listcomunas" [value]="comuna.id_comuna">{{comuna.nombre}}</option>
               </select>
               <div class="invalid-feedback">
@@ -148,7 +148,7 @@
           <hr class="mt-4 mb-2">
           <div class="col-md-1 mt-1">
             <label for="avatar" class="form-label">Avatar</label>   
-            <select   class="form-control" formControlName="selectedAvatar"(change)="onChangeAvatar()">
+            <select   class="form-control" formControlName="selectedAvatar" (change)="onChangeAvatar()">
               <option *ngFor="let avatar of avatars" [value]="avatar" >{{ avatar }}</option>
             </select>
           </div>
