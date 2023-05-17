@@ -1,14 +1,16 @@
-<aside id="sidebar" class="sidebar">
+<aside id="sidebar" class="sidebar" >
     <ul class="sidebar-nav" id="sidebar-nav">
        <li class="nav-item"> <a class="nav-link " routerLink="/inicio"> <i class="bi bi-grid"></i> <span>Inicio</span> </a></li>
-       <li class="nav-item">
-         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-menu-button-wide"></i><span>Administrar</span><i class="bi bi-chevron-down ms-auto"></i> </a>
+       <li class="nav-item" href="#" >
+      
+         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" > <i class="bi bi-menu-button-wide"></i><span>Administrar</span><i class="bi bi-chevron-down ms-auto"></i> </a>
          <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li> <a routerLink="/editini"> <i class="bi bi-circle"></i><span>Publicaciones</span> </a></li>
             <li> <a routerLink="/editproyec"> <i class="bi bi-circle"></i><span>Proyectos</span> </a></li>
             <li> <a routerLink="/editsolicitud"> <i class="bi bi-circle"></i><span>Solicitudes</span> </a></li>
             <li> <a routerLink="/addmiembro"> <i class="bi bi-circle"></i><span>Miembros Nuevos</span> </a></li>
             <li> <a routerLink="/editmiembro"> <i class="bi bi-circle"></i><span>Miembros Antiguos</span> </a></li>
+            <li>   <a (click)="navigate('registro/vecinos/junta-vecinal')">Ruta Junta</a></li>
          </ul>
       </li>
       <li class="nav-item">

@@ -27,7 +27,6 @@ import { AddmiembroComponent } from './components/admin/addmiembro/addmiembro.co
 import { ReportsComponent } from './components/admin/reports/reports.component';
 import { ViewvalorComponent } from './components/admin/viewvalor/viewvalor.component';
 import { HttpClientModule } from '@angular/common/http';
-import { RegisterRepComponent } from './components/admin/register-rep/register-rep.component';
 
 
 @NgModule({
@@ -53,7 +52,6 @@ import { RegisterRepComponent } from './components/admin/register-rep/register-r
     AddmiembroComponent,
     ReportsComponent,
     ViewvalorComponent,
-    RegisterRepComponent
   ],
   imports: [
     BrowserModule,

@@ -17,9 +17,11 @@ import {EditproyecComponent} from "../app/components/admin/editproyec/editproyec
 import {EditsolicitudComponent} from "../app/components/admin/editsolicitud/editsolicitud.component";
 import {ReportsComponent} from "../app/components/admin/reports/reports.component";
 import {ViewvalorComponent} from "../app/components/admin/viewvalor/viewvalor.component";
-import { RegisterRepComponent } from './components/admin/register-rep/register-rep.component';
 const routes: Routes = [
-  {path: 'reg_rep', component: RegisterRepComponent},
+{
+  path:'registro',
+  loadChildren: () => import('./modules/Registro/registro.module').then(m => m.RegistroModule)
+},
   {path: '', redirectTo: 'reg_rep', pathMatch: 'full'},// cambiar por el componente de inicio
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
