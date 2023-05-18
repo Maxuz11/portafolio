@@ -86,8 +86,6 @@ export class RegisterRepComponent implements OnInit {
     }
     else {
       const rut = this.parentForm.get('rut_junta')?.value;
-      
-
       console.log('que rut de razon ingresamos ',rut);
     }
   }

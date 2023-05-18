@@ -27,6 +27,7 @@ import { AddmiembroComponent } from './components/admin/addmiembro/addmiembro.co
 import { ReportsComponent } from './components/admin/reports/reports.component';
 import { ViewvalorComponent } from './components/admin/viewvalor/viewvalor.component';
 import { HttpClientModule } from '@angular/common/http';
+import { InicioGeneralComponent } from './components/inicio-general/inicio-general.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { HttpClientModule } from '@angular/common/http';
     AddmiembroComponent,
     ReportsComponent,
     ViewvalorComponent,
+    InicioGeneralComponent,
   ],
   imports: [
     BrowserModule,

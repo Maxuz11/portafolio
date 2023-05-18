@@ -17,12 +17,12 @@ import {EditproyecComponent} from "../app/components/admin/editproyec/editproyec
 import {EditsolicitudComponent} from "../app/components/admin/editsolicitud/editsolicitud.component";
 import {ReportsComponent} from "../app/components/admin/reports/reports.component";
 import {ViewvalorComponent} from "../app/components/admin/viewvalor/viewvalor.component";
+import { InicioGeneralComponent } from './components/inicio-general/inicio-general.component';
 const routes: Routes = [
-{
+  {
   path:'registro',
   loadChildren: () => import('./modules/Registro/registro.module').then(m => m.RegistroModule)
-},
-  {path: '', redirectTo: 'registro', pathMatch: 'full'},// cambiar por el componente de inicio
+  },
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'certificado', component: CertificadoComponent},
@@ -40,7 +40,9 @@ const routes: Routes = [
   {path: 'editsolicitud', component: EditsolicitudComponent},
   {path: 'reports', component: ReportsComponent},
   {path: 'viewvalor', component: ViewvalorComponent},
-  {path: '**', redirectTo: 'registro', pathMatch: 'full'}// cambiar por el componente de error
+  {path: 'inicio-general', component: InicioGeneralComponent},
+  {path: '', redirectTo: 'inicio-general'},// cambiar por el componente de inicio
+  //{path: '**', redirectTo: 'inicio-general', pathMatch: 'full'}// cambiar por el componente de error
 ];
 
 @NgModule({
