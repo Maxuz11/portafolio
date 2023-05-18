@@ -1,3 +1,10 @@
+<header id="header" class="header fixed-top align-items-center ">
+   <div class="d-flex  ">
+     <div class="p-2 flex-grow-1"><a class="navbar-brand" style="color:#012970"><h3>Junt<i class="bi bi-arrow-up-left-circle-fill"></i> a UnClick</h3></a></div>
+     <div class="p-2 flex-grow-1"></div>
+     <div class="ms-auto p-2 "><button class="btn btn-outline-danger" [routerLink]="['']"><i class="bi bi-box-arrow-right"></i> Atrás</button></div>                
+   </div>
+</header>
 <main>
     <div class="container">
        <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
@@ -28,7 +35,7 @@
                             </div>
                             <div class="col-12"> <button class="btn btn-primary w-100" type="submit">Iniciar</button></div>
                             <div class="col-12">
-                               <p class="small mb-0">No Tienes Cuenta? <a routerLink="/register">Crear Cuenta</a></p>
+                               <p class="small mb-0">No Tienes Cuenta? <button class="btn btn-primary btn-sm"><a (click)="navigate('registro/vecinos/reg-vecino')"><u>Crear Cuenta</u></a></button></p>
                             </div>
                          </form>
                       </div>

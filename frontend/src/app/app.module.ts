@@ -10,7 +10,6 @@ import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { LoginComponent } from './components/pages/login/login.component';
-import { RegisterComponent } from './components/pages/register/register.component';
 import { CertificadoComponent } from './components/pages/certificado/certificado.component';
 import { ProyectosComponent } from './components/pages/proyectos/proyectos.component';
 import { ValoracionComponent } from './components/pages/valoracion/valoracion.component';
@@ -37,7 +36,6 @@ import { InicioGeneralComponent } from './components/inicio-general/inicio-gener
     FooterComponent,
     SidebarComponent,
     LoginComponent,
-    RegisterComponent,
     CertificadoComponent,
     ProyectosComponent,
     ValoracionComponent,

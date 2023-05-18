@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { comuna } from '../../../interfaces/modelos';
 import {ComunaService} from '../../../services/servi.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,7 @@ export class RegisterComponent implements OnInit {
   listcomunas: comuna[] = [];
 
   constructor(
-    private comunaService: ComunaService,
+    private comunaService: ComunaService,private router:Router
   ) { }
    
   ngOnInit(): void {
@@ -30,5 +31,8 @@ export class RegisterComponent implements OnInit {
       }
     );
   }
-
+  navigate(ruta:any){
+    console.log(ruta);    
+    this.router.navigateByUrl(ruta);
+  }
 }

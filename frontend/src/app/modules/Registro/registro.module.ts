@@ -7,11 +7,13 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RutModule } from "rut-chileno";
 import { RegistroRoutingModule } from "./registro-routing.module";
 import { CommonModule } from "@angular/common";
+import { RegisterComponent } from "./register/register.component";
 
 
 @NgModule({
     declarations: [
-        RegisterRepComponent
+        RegisterRepComponent,
+        RegisterComponent
     ],
     imports: [
       HttpClientModule,

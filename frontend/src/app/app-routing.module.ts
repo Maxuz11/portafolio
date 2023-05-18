@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {LoginComponent} from "../app/components/pages/login/login.component";
-import {RegisterComponent} from "../app/components/pages/register/register.component";
 import {CertificadoComponent} from "../app/components/pages/certificado/certificado.component";
 import {PagesError404Component} from "../app/components/pages/pages-error404/pages-error404.component";
 import {PerfilComponent} from "../app/components/pages/perfil/perfil.component";
@@ -24,7 +23,6 @@ const routes: Routes = [
   loadChildren: () => import('./modules/Registro/registro.module').then(m => m.RegistroModule)
   },
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
   {path: 'certificado', component: CertificadoComponent},
   {path: 'pages-error404', component: PagesError404Component},
   {path: 'proyectos', component: ProyectosComponent},

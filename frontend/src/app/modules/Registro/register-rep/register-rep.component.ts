@@ -49,6 +49,7 @@ export class RegisterRepComponent implements OnInit {
       s_nomb_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
       ap_pat_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
       ap_mat_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
+      comuna_rep:[""],
       calle_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]],
       num_calle_rep: ["", [Validators.required, Validators.pattern("^[0-9]\\d*$")]],
       contacto_Rep: ["", [Validators.required, Validators.pattern("^[0-9]{8}$")]],
@@ -80,13 +81,12 @@ export class RegisterRepComponent implements OnInit {
     this.submitted = true;
     // stop here if form is invalid
     if (this.parentForm.invalid) {
-      const a = this.parentForm.controls['comuna_junta'].value;
-      console.log('q viene en comuna rep',a)
-      return;
+        return;
     }
     else {
-      const rut = this.parentForm.get('rut_junta')?.value;
-      console.log('que rut de razon ingresamos ',rut);
+      //capturamos los valores de los formularios y se los entregamos a la variable pertienente
+      const rut_junta = this.parentForm.get('rut_junta')?.value;
+      const comuna_junta = this.parentForm.controls['comuna_junta'].value;
     }
   }
 
