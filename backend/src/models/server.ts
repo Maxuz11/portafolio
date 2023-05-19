@@ -3,9 +3,8 @@ import cors from "cors";
 import routascomen from "../routes/comentarios";
 import routauser from "../routes/user";
 import routareset from "../routes/resetpass";
-
 import routacomuna from "../routes/comunas"
-import routamunicipalidad from "../routes/municipalidad"
+// import routamunicipalidad from "../routes/municipalidad"
 import routajunta from "../routes/juntavecinal"
 
 import { verificarTablas } from "./exists";
@@ -38,7 +37,7 @@ export class Server {
         this.app.use('/api/users', routauser);
         this.app.use('/api/reset', routareset);
         this.app.use('/api/comunas', routacomuna);
-        this.app.use('/api/municipalidades', routamunicipalidad);
+        // this.app.use('/api/municipalidades', routamunicipalidad);
         this.app.use('/api/juntavecinal', routajunta);
     }
     middlewares() {

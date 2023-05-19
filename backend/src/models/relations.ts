@@ -1,5 +1,5 @@
 import { 
-    Comuna, Municipalidad, JuntaVecinal, Proyecto, Reporte, RepresentanteVecinal, Actividad, Vecino, Certificado, Valoracion, Solicitud
+    Comuna, JuntaVecinal, Proyecto, Reporte, RepresentanteVecinal, Actividad, Vecino, Certificado, Valoracion, Solicitud
  } from "./mer"
 
 export class Foreign{
@@ -8,11 +8,11 @@ export class Foreign{
         
         try {
             //**relation between comuna and municipalidad */
-            await Comuna.hasMany(Municipalidad, { foreignKey: 'fk_id_comuna' });
-            await Municipalidad.belongsTo(Comuna, { foreignKey: 'fk_id_comuna' });
+           // await Comuna.hasMany(Municipalidad, { foreignKey: 'fk_id_comuna' });
+            //await Municipalidad.belongsTo(Comuna, { foreignKey: 'fk_id_comuna' });
             //**relation between municipalidad and junta_vecinal */
-            await Municipalidad.hasMany(JuntaVecinal, { foreignKey: 'fk_id_municipalidad' });
-            await JuntaVecinal.belongsTo(Municipalidad, { foreignKey: 'fk_id_municipalidad' });
+            await Comuna.hasMany(JuntaVecinal, { foreignKey: 'fk_id_comuna' });
+            await JuntaVecinal.belongsTo(Comuna, { foreignKey: 'fk_id_comuna' });
             //**relation between junta_vecinal and proyecto*/
             await JuntaVecinal.hasMany(Proyecto, { foreignKey: 'fk_id_junta_vecinal' });
             await Proyecto.belongsTo(JuntaVecinal, { foreignKey: 'fk_id_junta_vecinal' });

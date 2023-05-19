@@ -1,6 +1,6 @@
 import { QueryTypes } from "sequelize";
 import db from "../db/connection";
-import { Actividad, Certificado, Comuna, JuntaVecinal, Municipalidad, Proyecto, Reporte, RepresentanteVecinal, Solicitud, Valoracion, Vecino } from "./mer";
+import { Actividad, Certificado, Comuna, JuntaVecinal, Proyecto, Reporte, RepresentanteVecinal, Solicitud, Valoracion, Vecino } from "./mer";
 import { Foreign } from "./relations";
  
 import { queries } from "./queries";
@@ -33,7 +33,7 @@ export function verificarTablas() {
           console.log(resultado);
 
           await Comuna.sync();
-          await Municipalidad.sync();
+          // await Municipalidad.sync();
           await JuntaVecinal.sync();
           await Proyecto.sync();
           await Reporte.sync();

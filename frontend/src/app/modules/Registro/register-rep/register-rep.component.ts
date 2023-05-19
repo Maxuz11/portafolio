@@ -1,8 +1,11 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RutService } from 'rut-chileno';
 import { comuna } from 'src/app/interfaces/modelos';
+import { PostService } from 'src/app/services/postService.service';
 import { ComunaService } from 'src/app/services/servi.service';
+import {JuntaVecinal} from 'src/app/interfaces/modelos';
 
 @Component({
   selector: 'app-register-rep',
@@ -21,7 +24,7 @@ export class RegisterRepComponent implements OnInit {
   // inicializar variables
   listcomunas: comuna[] = [];
 
-  constructor(private fb: FormBuilder,private rutService: RutService,private comunaService: ComunaService) { }
+  constructor(private fb: FormBuilder,private rutService: RutService,private comunaService: ComunaService, private junta:PostService ) { }
 
    //aqui se formatea el rut cuando se inserta
    formatearRut(event : Event): void {
@@ -44,19 +47,19 @@ export class RegisterRepComponent implements OnInit {
       comuna_junta:[""],
       calle_junta: ["", [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]],
       num_calle_junta: ["", [Validators.required, Validators.pattern("^[0-9]\\d*$")]],
-      run_rep: ["", [Validators.required, this.rutService.validaRutForm]],
-      p_nomb_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
-      s_nomb_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
-      ap_pat_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
-      ap_mat_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
-      comuna_rep:[""],
-      calle_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]],
-      num_calle_rep: ["", [Validators.required, Validators.pattern("^[0-9]\\d*$")]],
-      contacto_Rep: ["", [Validators.required, Validators.pattern("^[0-9]{8}$")]],
-      correo_rep: ["", [Validators.required,Validators.email]],
-      clave_rep: ["", [Validators.required]],
-      clave_rep_conf: ["", [Validators.required]],
-      selectedAvatar: new FormControl(null)
+      // run_rep: ["", [Validators.required, this.rutService.validaRutForm]],
+      // p_nomb_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
+      // s_nomb_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
+      // ap_pat_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
+      // ap_mat_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
+      // comuna_rep:[""],
+      // calle_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]],
+      // num_calle_rep: ["", [Validators.required, Validators.pattern("^[0-9]\\d*$")]],
+      // contacto_Rep: ["", [Validators.required, Validators.pattern("^[0-9]{8}$")]],
+      // correo_rep: ["", [Validators.required,Validators.email]],
+      // clave_rep: ["", [Validators.required]],
+      // clave_rep_conf: ["", [Validators.required]],
+      // selectedAvatar: new FormControl(null)
     });
 
     //consumir el servicio listar comunas
@@ -85,8 +88,34 @@ export class RegisterRepComponent implements OnInit {
     }
     else {
       //capturamos los valores de los formularios y se los entregamos a la variable pertienente
-      const rut_junta = this.parentForm.get('rut_junta')?.value;
+      const rut_junta = this.parentForm.controls['rut_junta'].value;
       const comuna_junta = this.parentForm.controls['comuna_junta'].value;
+      const nombre_j = this.parentForm.controls['nomb_junta'].value;
+      const calle_junta = this.parentForm.controls['calle_junta'].value;
+      const numero_calle = this.parentForm.controls['num_calle_junta'].value;
+
+      const junta: JuntaVecinal = {
+        id_comuna: comuna_junta,
+        razon_social: nombre_j,
+        direccion: calle_junta,
+        numero_calle: numero_calle,
+        rut_junta: rut_junta
+      }
+      console.log(junta);
+      
+      this.junta.insertJuntaVecinal(junta)
+      .subscribe(response => {
+        // Maneja la respuesta de la solicitud aquí
+        console.log(response);
+        if(response == 'ok'){
+
+        }
+        
+      }, error => {
+        // Maneja el error en caso de que ocurra
+        console.error(error);
+      });
+
     }
   }
 

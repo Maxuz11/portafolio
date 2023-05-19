@@ -22,23 +22,23 @@ export const Comuna = sequelize.define('comuna', {
         tableName: 'comuna'
 });
 
-export const Municipalidad = sequelize.define('municipalidad', {
-    id_municipalidad: { 
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    nombre: {
-        type: DataTypes.STRING(50),
-        unique: true,
-        allowNull: false,
-    },
-    },
-    {
-        createdAt: false,
-        timestamps: false,
-        tableName: 'municipalidad'
-});
+// export const Municipalidad = sequelize.define('municipalidad', {
+//     id_municipalidad: { 
+//         type: DataTypes.INTEGER,
+//         primaryKey: true,
+//         autoIncrement: true
+//     },
+//     nombre: {
+//         type: DataTypes.STRING(50),
+//         unique: true,
+//         allowNull: false,
+//     },
+//     },
+//     {
+//         createdAt: false,
+//         timestamps: false,
+//         tableName: 'municipalidad'
+// });
 
 export const JuntaVecinal = sequelize.define('JuntaVecinal', {
     id_junta_vecinal: { 
@@ -51,9 +51,14 @@ export const JuntaVecinal = sequelize.define('JuntaVecinal', {
         unique: true,
         allowNull: false,
     },
+    direccion:{
+        type: DataTypes.STRING(50),
+        unique: false,
+        allowNull: false,
+    },
     numero_calle: {
         type: DataTypes.INTEGER,
-        unique: true,
+        unique: false,
         allowNull: false,
     },   
     rut_junta: {
@@ -61,12 +66,18 @@ export const JuntaVecinal = sequelize.define('JuntaVecinal', {
         unique: true,
         allowNull: false
     },
+    fk_id_comuna:{
+        type: DataTypes.INTEGER,
+        allowNull: false
     },
-    {
+   
+    },
+    { 
     createdAt: false,
     timestamps: false,
     tableName: 'junta_vecinal'
 });
+JuntaVecinal.belongsTo(Comuna, { foreignKey: 'fk_id_comuna' });
 
 export const Proyecto = sequelize.define('Proyecto', {
     id_proyecto: { 

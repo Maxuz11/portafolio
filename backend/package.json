@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon dist/index.js",
-    "esc": "tsc --watch"
+    "esc": "tsc --watch",
+    "local":"concurrently \"npm run dev\" \"cd ../frontend && ng serve --open=false --o\" \"npm run esc\""
+
   },
   "keywords": [],
   "author": "",

@@ -1,10 +1,11 @@
-import { Comuna, Municipalidad } from "./mer";
+import { Comuna } from "./mer";
 
 
 export class Seeders{
 
     //**datos a insertar */
     dataComuna = [
+        { nombre: '-------' },
         { nombre: 'Puente Alto' },
         { nombre: 'La Florida' },
         { nombre: 'Maipu' },
@@ -12,11 +13,6 @@ export class Seeders{
         { nombre: 'Macul' },
     ];
 
-    dataMunicipalidad = [
-        {  nombre: 'Municipalidad Puente Alto', fk_id_comuna: 1 },
-        {  nombre: 'Municipalidad La Florida', fk_id_comuna: 2 },
-        {  nombre: 'Municipalidad Maipu', fk_id_comuna: 3 },
-    ];  
     //**promise que inserta los datos de inicio en las tablas comunas y municipalidad. */
     insertSeeders = async () => {
     try {
@@ -30,17 +26,7 @@ export class Seeders{
         await Comuna.bulkCreate(this.dataComuna);
         console.log('Se han insertado los datos correctamente en la tabla Comuna.');
       }
-  
-      // Verificar si la tabla Municipalidad contiene datos.
-      const municipalidadCount = await Municipalidad.count();
 
-      if (municipalidadCount > 0) {
-        console.log(`La tabla Municipalidad ya contiene ${municipalidadCount} registros.`);
-      } else {
-        // Insertar datos en la tabla Municipalidad.
-        await Municipalidad.bulkCreate(this.dataMunicipalidad);
-        console.log('Se han insertado los datos correctamente en la tabla Municipalidad.');
-      }
     } catch (error) {
       console.error('Error al insertar los datos:', error);
     }

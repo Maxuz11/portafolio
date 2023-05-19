@@ -1,9 +1,9 @@
-import { Router } from 'express';
+// import { Router } from 'express';
 
-import { getmunicipalidades } from '../controllers/municipalidad';
+// import { getmunicipalidades } from '../controllers/municipalidad';
 
-const router = Router();
+// const router = Router();
 
-router.get('/', getmunicipalidades);
+// router.get('/', getmunicipalidades);
 
-export default router;
+// export default router;
