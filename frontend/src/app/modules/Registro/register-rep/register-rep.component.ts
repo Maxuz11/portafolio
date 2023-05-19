@@ -2,10 +2,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RutService } from 'rut-chileno';
-import { comuna } from 'src/app/interfaces/modelos';
+import { RepresentanteVecinal, comuna } from 'src/app/interfaces/modelos';
 import { PostService } from 'src/app/services/postService.service';
 import { ComunaService } from 'src/app/services/servi.service';
 import {JuntaVecinal} from 'src/app/interfaces/modelos';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-rep',
@@ -13,6 +14,7 @@ import {JuntaVecinal} from 'src/app/interfaces/modelos';
   styleUrls: ['./register-rep.component.scss']
 })
 export class RegisterRepComponent implements OnInit {
+
   parentForm!: FormGroup;
   //iniciacion del submit siempre falso 
   submitted = false;
@@ -24,7 +26,9 @@ export class RegisterRepComponent implements OnInit {
   // inicializar variables
   listcomunas: comuna[] = [];
 
-  constructor(private fb: FormBuilder,private rutService: RutService,private comunaService: ComunaService, private junta:PostService ) { }
+  constructor(private fb: FormBuilder,private rutService: RutService,private comunaService: ComunaService, private junta:PostService,private router:Router) { 
+    
+  }
 
    //aqui se formatea el rut cuando se inserta
    formatearRut(event : Event): void {
@@ -47,19 +51,19 @@ export class RegisterRepComponent implements OnInit {
       comuna_junta:[""],
       calle_junta: ["", [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]],
       num_calle_junta: ["", [Validators.required, Validators.pattern("^[0-9]\\d*$")]],
-      // run_rep: ["", [Validators.required, this.rutService.validaRutForm]],
-      // p_nomb_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
-      // s_nomb_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
-      // ap_pat_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
-      // ap_mat_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
-      // comuna_rep:[""],
-      // calle_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]],
-      // num_calle_rep: ["", [Validators.required, Validators.pattern("^[0-9]\\d*$")]],
-      // contacto_Rep: ["", [Validators.required, Validators.pattern("^[0-9]{8}$")]],
-      // correo_rep: ["", [Validators.required,Validators.email]],
-      // clave_rep: ["", [Validators.required]],
-      // clave_rep_conf: ["", [Validators.required]],
-      // selectedAvatar: new FormControl(null)
+      run_rep: ["", [Validators.required, this.rutService.validaRutForm]],
+      p_nomb_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
+      s_nomb_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
+      ap_pat_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
+      ap_mat_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
+      comuna_rep:[""],
+      calle_rep: ["", [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]],
+      num_calle_rep: ["", [Validators.required, Validators.pattern("^[0-9]\\d*$")]],
+      contacto_Rep: ["", [Validators.required, Validators.pattern("^[0-9]{8}$")]],
+      correo_rep: ["", [Validators.required,Validators.email]],
+      clave_rep: ["", [Validators.required]],
+      clave_rep_conf: ["", [Validators.required]],
+      selectedAvatar: new FormControl(null)
     });
 
     //consumir el servicio listar comunas
@@ -72,12 +76,18 @@ export class RegisterRepComponent implements OnInit {
         console.log(error); // Mostrar el error en la consola
       }
     );
+
+    
    
   }
 
   onChangeAvatar() {
     this.selectedAvatar = this.parentForm.controls['selectedAvatar'].value;
   console.log(this.selectedAvatar);
+  }
+
+  open_Modal(){
+    console.log('Abrir modal');
   }
 
   onSubmit(){
@@ -87,28 +97,47 @@ export class RegisterRepComponent implements OnInit {
         return;
     }
     else {
-      //capturamos los valores de los formularios y se los entregamos a la variable pertienente
-      const rut_junta = this.parentForm.controls['rut_junta'].value;
-      const comuna_junta = this.parentForm.controls['comuna_junta'].value;
-      const nombre_j = this.parentForm.controls['nomb_junta'].value;
-      const calle_junta = this.parentForm.controls['calle_junta'].value;
-      const numero_calle = this.parentForm.controls['num_calle_junta'].value;
-
+      //capturamos los valores de los formularios y se los entregamos a la variable de la interfaces
       const junta: JuntaVecinal = {
-        id_comuna: comuna_junta,
-        razon_social: nombre_j,
-        direccion: calle_junta,
-        numero_calle: numero_calle,
-        rut_junta: rut_junta
+        id_comuna: this.parentForm.controls['comuna_junta'].value,
+        razon_social: this.parentForm.controls['nomb_junta'].value,
+        direccion: this.parentForm.controls['calle_junta'].value,
+        numero_calle: this.parentForm.controls['num_calle_junta'].value,
+        rut_junta: this.parentForm.controls['rut_junta'].value,
       }
-      console.log(junta);
+
+      const RepOne: RepresentanteVecinal={
+        rut_representante: this.parentForm.controls['run_rep'].value,
+        primer_nombre: this.parentForm.controls['p_nomb_rep'].value,
+        segundo_nombre: this.parentForm.controls['s_nomb_rep'].value,
+        primer_apellido: this.parentForm.controls['ap_pat_rep'].value,
+        segundo_apellido: this.parentForm.controls['ap_mat_rep'].value,
+        direccion_rep: this.parentForm.controls['calle_rep'].value,
+        numero_rep: this.parentForm.controls['num_calle_rep'].value,
+        correo_electronico: this.parentForm.controls['correo_rep'].value,
+        telefono: this.parentForm.controls['contacto_Rep'].value,
+        contrasenia: this.parentForm.controls['clave_rep'].value,
+        comuna_rep: this.parentForm.controls['comuna_rep'].value,
+        avatar: this.parentForm.controls['selectedAvatar'].value,
+        ruta_evidencia: 'hola.txt',
+        ruta_firma: 'hola2.txt',
+      }  
       
-      this.junta.insertJuntaVecinal(junta)
+      //aqui entregamos ambos array a uno solo 
+      const data = {
+        ...junta,
+        ...RepOne
+      };
+    
+      console.log(data);
+
+
+      this.junta.insertJuntaVecinal(data)
       .subscribe(response => {
         // Maneja la respuesta de la solicitud aquí
         console.log(response);
         if(response == 'ok'){
-
+          this.router.navigateByUrl('login');
         }
         
       }, error => {

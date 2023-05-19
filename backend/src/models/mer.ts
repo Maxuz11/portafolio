@@ -166,13 +166,21 @@ export const RepresentanteVecinal = sequelize.define('RepresentanteVecinal', {
         type: DataTypes.STRING(50),
         allowNull: false,
     },
+    comuna_rep:{
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
     direccion: {
         type: DataTypes.STRING(80),
         allowNull: false,
     },
+    numero:{
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
     correo_electronico: {
         type: DataTypes.STRING(60),
-        unique: true,
+       // unique: true,
         allowNull: false,
     },
     telefono: {
@@ -182,15 +190,19 @@ export const RepresentanteVecinal = sequelize.define('RepresentanteVecinal', {
     },
     contrasenia: {
         type: DataTypes.INTEGER,
-        unique: true,
+        //unique: true,
         allowNull: false,
-        validate: {
-            isFiveDigits(value: Number) {
-              if (value.toString().length !== 5) {
-                throw new Error('La contraseña debe tener 5 dígitos');
-              }
-            }
-        }
+        // validate: {
+        //     isFiveDigits(value: Number) {
+        //       if (value.toString().length !== 5) {
+        //         throw new Error('La contraseña debe tener 5 dígitos');
+        //       }
+        //     }
+        // }
+    },
+    avatar:{
+        type: DataTypes.STRING(70),
+        allowNull: false,
     },
     ruta_evidencia: {
         type: DataTypes.STRING(70),
@@ -198,7 +210,11 @@ export const RepresentanteVecinal = sequelize.define('RepresentanteVecinal', {
     },
     ruta_firma: {
         type: DataTypes.STRING(70),
-        allowNull: true,
+        allowNull: true
+    },
+    fk_id_junta_vecinal:{
+        type: DataTypes.INTEGER,
+        allowNull: false
     },
     },
     {
@@ -206,6 +222,7 @@ export const RepresentanteVecinal = sequelize.define('RepresentanteVecinal', {
         timestamps: false,
         tableName: 'representante_vecinal'
 });
+RepresentanteVecinal.belongsTo(JuntaVecinal, { foreignKey: 'fk_id_junta_vecinal' });
 
 export const Actividad = sequelize.define('Actividad', {
     id_actividad: { 

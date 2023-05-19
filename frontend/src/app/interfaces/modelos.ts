@@ -17,16 +17,19 @@ export interface JuntaVecinal {
   rut_junta: string;
 }
 
-export interface REPRESENTANTE_VECINAL {
-  RUT_REPRESENTANTE: string,
-  PRIMER_NOMBRE: string,
-  SEGUNDO_NOMBRE: String,
-  PRIMER_APELLIDO: String,
-  SEGUNDO_APELLIDO: String,
-  COMUNA: Number,
-  DIRECCION: String,
-  NUMERO: Number,
-  CORREO_ELECTRONICO: String,
-  TELEFONO: String;
-  CONTRASENIA: String
+export interface RepresentanteVecinal {
+  rut_representante: string,
+  primer_nombre: string,
+  segundo_nombre: String,
+  primer_apellido: String,
+  segundo_apellido: String,
+  direccion_rep: String,
+  numero_rep: Number,
+  correo_electronico: String,
+  telefono: String;
+  contrasenia: String,
+  comuna_rep: Number,
+  avatar:string,
+  ruta_evidencia: string,
+  ruta_firma: string,
 }
