@@ -48,7 +48,6 @@ export const JuntaVecinal = sequelize.define('JuntaVecinal', {
     },
     razon_social: {
         type: DataTypes.STRING(50),
-        unique: true,
         allowNull: false,
     },
     direccion:{
@@ -146,7 +145,7 @@ export const RepresentanteVecinal = sequelize.define('RepresentanteVecinal', {
         autoIncrement: true
     },
     rut_representante: {
-        type: DataTypes.STRING(10),
+        type: DataTypes.STRING,
         unique: true,
         allowNull: false,
     },
@@ -184,12 +183,11 @@ export const RepresentanteVecinal = sequelize.define('RepresentanteVecinal', {
         allowNull: false,
     },
     telefono: {
-        type: DataTypes.STRING(12),
-        unique: true,
+        type: DataTypes.INTEGER,
         allowNull: true,
     },
     contrasenia: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         //unique: true,
         allowNull: false,
         // validate: {

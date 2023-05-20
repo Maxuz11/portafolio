@@ -11,7 +11,7 @@ export const insertJuntaVecinal = async (req: Request, res: Response) => {
             })
         }
         else {
-           const juntaVEcinal =  await JuntaVecinal.create({ 
+            const juntaVEcinal =  await JuntaVecinal.create({ 
                 razon_social: data.razon_social,
                 direccion: data.direccion,
                 numero_calle: data.numero_calle,
@@ -19,32 +19,60 @@ export const insertJuntaVecinal = async (req: Request, res: Response) => {
                 fk_id_comuna: data.id_comuna                
             },
             );
-            //agregamos enseguida el 1er rep con los datos de la creacion anterior 
-            const idJuntaVecinal = JuntaVecinal.findOne({attributes: ['id_junta_vecinal'],where: {rut_junta: data.rut_junta}});
-            const RepVec =  await RepresentanteVecinal.create({ 
-                rut_representante: data.rut_representante,
-                primer_nombre: data.primer_nombre,
-                segundo_nombre: data.segundo_nombre,
-                primer_apellido: data.primer_apellido,
-                segundo_apellido: data.segundo_apellido,
-                comuna_rep: data.comuna_rep,
-                direccion: data.direccion, 
-                numero: data.numero,
-                correo_electronico: data.correo_electronico, 
-                telefono: data.telefono, 
-                contrasenia: data.contrasenia, 
-                avatar: data.avatar,
-                ruta_evidencia: data.ruta_evidencia, 
-                ruta_firma: data.ruta_firma, 
-                fk_id_junta_vecinal: idJuntaVecinal        
-            },
-            );
-            console.log('ok')
-
+            const idJuntaVecinal = await JuntaVecinal.findOne({ attributes: ['id_junta_vecinal'], where: { rut_junta: data.rut_junta } });
+            console.log('que trae la consulta',idJuntaVecinal)
+            //convertimos a la IdJunta... en un objeto y obtenemos el valor de este
+            let aaa= idJuntaVecinal ? Object.values(idJuntaVecinal.toJSON()) : null;
+            //ahora covertimos la array q nos devolvio en un string
+            let b = aaa?.toString( );
+            //aqui creamos una variable json que retornaremos como respuesta
+            return res.json({
+                id: b,
+                msg: 'ok'
+            });
         }
     } catch( error ) {
         console.error('Error al insertar los datos en la tabla junta_vecinal:', error);
 
     }
 }; 
+
+export const inserRep = async(req:Request, res : Response)=>{
+    
+    const datoRep = req.body; 
+    try {
+        const RepExistente = await RepresentanteVecinal.findOne({where: {rut_representante: datoRep.rut_representante}});
+        if (RepExistente !== null){
+            return res.status(401).json({
+                msg: `El represenatante ya se encuentra en el sistema.`
+            })
+        }
+        else{             
+            //agregamos enseguida el 1er rep con los datos de la creacion anterior 
+            
+            const RepVec = await  RepresentanteVecinal.create({ 
+                rut_representante: datoRep.rut_representante,
+                primer_nombre: datoRep.primer_nombre,
+                segundo_nombre: datoRep.segundo_nombre,
+                primer_apellido: datoRep.primer_apellido,
+                segundo_apellido: datoRep.segundo_apellido,
+                comuna_rep: datoRep.comuna_rep,
+                direccion: datoRep.direccion_rep, 
+                numero: datoRep.numero_rep,
+                correo_electronico: datoRep.correo_electronico, 
+                telefono: datoRep.telefono, 
+                contrasenia: datoRep.contrasenia, 
+                avatar: datoRep.avatar,
+                ruta_evidencia: datoRep.ruta_evidencia, 
+                ruta_firma: datoRep.ruta_firma, 
+                fk_id_junta_vecinal: datoRep.id_junta_vecinal        
+            },
+            );
+            return res.json({ msg:'yes'});   
+        }
+    }
+    catch{
+        console.log('hay un error')
+    }
+};
    

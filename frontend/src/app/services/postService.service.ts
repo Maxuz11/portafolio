@@ -1,4 +1,4 @@
-import { JuntaVecinal } from './../interfaces/modelos';
+import { JuntaVecinal, RepresentanteVecinal } from './../interfaces/modelos';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -19,6 +19,10 @@ export class PostService {
     //metodo de insercion de la junta vecinal
     insertJuntaVecinal(junta :JuntaVecinal): Observable <any>{
       return this.http.post(`${this.myAppUrl}${this.myApiUrl}`, junta);
+    }
+
+    inserRep( Rep:RepresentanteVecinal): Observable <any>{
+      return this.http.post(`${this.myAppUrl}${this.myApiUrl}/insercion`, Rep);
     }
 }
 

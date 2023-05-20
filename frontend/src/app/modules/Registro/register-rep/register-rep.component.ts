@@ -70,7 +70,6 @@ export class RegisterRepComponent implements OnInit {
     this.comunaService.getComunas().subscribe(
       (data: { listComunas: comuna[] }) => {
         this.listcomunas = data.listComunas;
-        console.log(this.listcomunas);
       },
       error => {
         console.log(error); // Mostrar el error en la consola
@@ -104,41 +103,76 @@ export class RegisterRepComponent implements OnInit {
         direccion: this.parentForm.controls['calle_junta'].value,
         numero_calle: this.parentForm.controls['num_calle_junta'].value,
         rut_junta: this.parentForm.controls['rut_junta'].value,
-      }
+      }    
+      console.log(junta);
 
-      const RepOne: RepresentanteVecinal={
-        rut_representante: this.parentForm.controls['run_rep'].value,
-        primer_nombre: this.parentForm.controls['p_nomb_rep'].value,
-        segundo_nombre: this.parentForm.controls['s_nomb_rep'].value,
-        primer_apellido: this.parentForm.controls['ap_pat_rep'].value,
-        segundo_apellido: this.parentForm.controls['ap_mat_rep'].value,
-        direccion_rep: this.parentForm.controls['calle_rep'].value,
-        numero_rep: this.parentForm.controls['num_calle_rep'].value,
-        correo_electronico: this.parentForm.controls['correo_rep'].value,
-        telefono: this.parentForm.controls['contacto_Rep'].value,
-        contrasenia: this.parentForm.controls['clave_rep'].value,
-        comuna_rep: this.parentForm.controls['comuna_rep'].value,
-        avatar: this.parentForm.controls['selectedAvatar'].value,
-        ruta_evidencia: 'hola.txt',
-        ruta_firma: 'hola2.txt',
-      }  
-      
-      //aqui entregamos ambos array a uno solo 
-      const data = {
-        ...junta,
-        ...RepOne
-      };
-    
-      console.log(data);
-
-
-      this.junta.insertJuntaVecinal(data)
+      this.junta.insertJuntaVecinal(junta)
       .subscribe(response => {
         // Maneja la respuesta de la solicitud aquí
         console.log(response);
-        if(response == 'ok'){
-          this.router.navigateByUrl('login');
+
+        try {
+          // Si el mensaje tiene un 'ok', realizaremos una inserción del representante
+          if (response.msg === 'ok') {
+            const RepOne: RepresentanteVecinal = {
+              rut_representante: this.parentForm.controls['run_rep'].value,
+              primer_nombre: this.parentForm.controls['p_nomb_rep'].value,
+              segundo_nombre: this.parentForm.controls['s_nomb_rep'].value,
+              primer_apellido: this.parentForm.controls['ap_pat_rep'].value,
+              segundo_apellido: this.parentForm.controls['ap_mat_rep'].value,
+              direccion_rep: this.parentForm.controls['calle_rep'].value,
+              numero_rep: this.parentForm.controls['num_calle_rep'].value,
+              correo_electronico: this.parentForm.controls['correo_rep'].value,
+              telefono: this.parentForm.controls['contacto_Rep'].value,
+              contrasenia: this.parentForm.controls['clave_rep'].value,
+              comuna_rep: this.parentForm.controls['comuna_rep'].value,
+              avatar: this.parentForm.controls['selectedAvatar'].value,
+              ruta_evidencia: 'hola.txt',
+              ruta_firma: 'hola2.txt',
+              id_junta_vecinal: response.id
+            };
+        
+            this.junta.inserRep(RepOne).subscribe(response => {
+              console.log('ALOOOOOOOOOOOOOOOOOOOOOOO',response)
+              if (response.msg === 'yes') {
+                console.log('entraa o no',response)
+                this.router.navigate(['login']);
+                //this.router.navigateByUrl('login');
+              }
+            });
+          }
+        } catch (error) {
+          console.error('Error al parsear la respuesta JSON:', error);
         }
+        
+        
+        // var obj = JSON.parse(response);
+        // // si el mensaje tiene un ok realizaremos una insercion del rep 
+        // if(obj.msg === 'ok'){
+
+        //   const RepOne: RepresentanteVecinal={
+        //     rut_representante: this.parentForm.controls['run_rep'].value,
+        //     primer_nombre: this.parentForm.controls['p_nomb_rep'].value,
+        //     segundo_nombre: this.parentForm.controls['s_nomb_rep'].value,
+        //     primer_apellido: this.parentForm.controls['ap_pat_rep'].value,
+        //     segundo_apellido: this.parentForm.controls['ap_mat_rep'].value,
+        //     direccion_rep: this.parentForm.controls['calle_rep'].value,
+        //     numero_rep: this.parentForm.controls['num_calle_rep'].value,
+        //     correo_electronico: this.parentForm.controls['correo_rep'].value,
+        //     telefono: this.parentForm.controls['contacto_Rep'].value,
+        //     contrasenia: this.parentForm.controls['clave_rep'].value,
+        //     comuna_rep: this.parentForm.controls['comuna_rep'].value,
+        //     avatar: this.parentForm.controls['selectedAvatar'].value,
+        //     ruta_evidencia: 'hola.txt',
+        //     ruta_firma: 'hola2.txt',
+        //     id_junta_vecinal: obj.id
+        //   }  
+        //   this.junta.inserRep(RepOne).subscribe(response=> {
+        //       if(response == 'ok'){
+        //         this.router.navigateByUrl('login');
+        //       }
+        //     });
+        // }
         
       }, error => {
         // Maneja el error en caso de que ocurra
