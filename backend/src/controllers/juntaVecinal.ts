@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import { JuntaVecinal, RepresentanteVecinal } from '../models/mer';
+import bcrypt from 'bcrypt';
 
+//creacion de la junta vecinal y retorno del id que se genero de esta
 export const insertJuntaVecinal = async (req: Request, res: Response) => {
     const data = req.body;    
     try {
@@ -37,6 +39,7 @@ export const insertJuntaVecinal = async (req: Request, res: Response) => {
     }
 }; 
 
+//creacion e insercion del representantes vecinal con el id_justaVecinal
 export const inserRep = async(req:Request, res : Response)=>{
     
     const datoRep = req.body; 
@@ -49,7 +52,8 @@ export const inserRep = async(req:Request, res : Response)=>{
         }
         else{             
             //agregamos enseguida el 1er rep con los datos de la creacion anterior 
-            
+            const passhash = await bcrypt.hash(datoRep.contrasenia,10);
+
             const RepVec = await  RepresentanteVecinal.create({ 
                 rut_representante: datoRep.rut_representante,
                 primer_nombre: datoRep.primer_nombre,
@@ -61,7 +65,7 @@ export const inserRep = async(req:Request, res : Response)=>{
                 numero: datoRep.numero_rep,
                 correo_electronico: datoRep.correo_electronico, 
                 telefono: datoRep.telefono, 
-                contrasenia: datoRep.contrasenia, 
+                contrasenia: passhash, 
                 avatar: datoRep.avatar,
                 ruta_evidencia: datoRep.ruta_evidencia, 
                 ruta_firma: datoRep.ruta_firma, 
@@ -75,4 +79,6 @@ export const inserRep = async(req:Request, res : Response)=>{
         console.log('hay un error')
     }
 };
+
+
    

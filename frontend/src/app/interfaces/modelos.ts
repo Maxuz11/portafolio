@@ -9,12 +9,12 @@ export interface comuna{
     nombre: string;
 };
 
-export interface JuntaVecinal {
-  id_comuna: number;
+export interface JuntaVecinal {  
   razon_social: string;
   direccion: string;
   numero_calle: number;
   rut_junta: string;
+  id_comuna: number;
 }
 
 export interface RepresentanteVecinal {
@@ -33,4 +33,8 @@ export interface RepresentanteVecinal {
   ruta_evidencia: string,
   ruta_firma: string,
   id_junta_vecinal: Number
+}
+export interface Login{
+  rut_representante: string,
+  contrasenia: string
 }

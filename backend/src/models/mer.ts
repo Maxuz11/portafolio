@@ -188,7 +188,6 @@ export const RepresentanteVecinal = sequelize.define('RepresentanteVecinal', {
     },
     contrasenia: {
         type: DataTypes.STRING,
-        //unique: true,
         allowNull: false,
         // validate: {
         //     isFiveDigits(value: Number) {
@@ -381,3 +380,18 @@ export const Valoracion = sequelize.define('Valoracion', {
     timestamps: false,
     tableName: 'valoracion'
 });
+
+// export const User = sequelize.define('User',{
+//     rut_user: {
+//         type: DataTypes.STRING(13),
+//         allowNull: false
+//     },
+//     contrasenia:{
+//         type: DataTypes.STRING,
+//         allowNull: false
+//     },
+//     }, 
+//     {
+//         createdAt: false,
+//         timestamps: false
+// });

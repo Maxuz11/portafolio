@@ -1,8 +1,8 @@
 import  Express  from "express";
 import cors from "cors";
 import routascomen from "../routes/comentarios";
-import routauser from "../routes/user";
-import routareset from "../routes/resetpass";
+import routauser from "../routes/login";
+//import routareset from "../routes/resetpass";
 import routacomuna from "../routes/comunas"
 // import routamunicipalidad from "../routes/municipalidad"
 import routajunta from "../routes/juntavecinal"
@@ -34,8 +34,8 @@ export class Server {
     //metodo para las rutas para llevar mandar a llamar las rutas en angular
     routas() {
         this.app.use('/api/comen', routascomen);
-        this.app.use('/api/users', routauser);
-        this.app.use('/api/reset', routareset);
+       this.app.use('/api/users', routauser);
+        //this.app.use('/api/reset', routareset);
         this.app.use('/api/comunas', routacomuna);
         // this.app.use('/api/municipalidades', routamunicipalidad);
         this.app.use('/api/juntavecinal', routajunta);

@@ -29,6 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { InicioGeneralComponent } from './components/inicio-general/inicio-general.component';
 
 
+
+//sweeTaLERT IMPORT
 @NgModule({
   declarations: [
     AppComponent,
