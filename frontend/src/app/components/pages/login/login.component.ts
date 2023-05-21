@@ -11,11 +11,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  login!:FormGroup;
+  login!:FormGroup; //formulario distinto de null
 
-  
-
-  submit: boolean = false;
+  submit: boolean = false; 
   constructor(private router:Router,private fb:FormBuilder, private loggin: PostService
    , ) { }
 
@@ -33,20 +31,30 @@ export class LoginComponent implements OnInit {
       return;
     }
     else{
-      const a = this.login.controls['username'].value;
-      const b = this.login.controls['password'].value;
-      const c = this.login.controls['rememberMe'].value;
+      //captura del dato y envio al metodo login
+      //const c = this.login.controls['rememberMe'].value;
       const datos: Login ={
-        rut_representante: a,
-        contrasenia: b
+        rut_representante: this.login.controls['username'].value,
+        contrasenia: this.login.controls['password'].value
       }
 
       console.log('lo q enviamos',datos)
       try {
           this.loggin.login(datos).subscribe( res =>{
+            //respuesta y modal de sweetAlert
             if(res.alo[0] === 'representante'){
               //Set.localStorage
               //this.router.navigate(['inicio']);
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Ingreso Exitoso!!',
+                showConfirmButton: false,
+                timer: 1500
+              }).then(() => {
+                /* Read more about isConfirmed, isDenied below */
+                this.router.navigate(['inicio']);
+              })
             }
           
         });
@@ -56,9 +64,7 @@ export class LoginComponent implements OnInit {
       
     }
   }
-   showAlert() {
-    Swal.fire('Hello!', 'This is a SweetAlert2 alert.');
-  }
+
   //aqui indicamos la funcion de navigate la cual recibe una ruta y nos direcciona
   navigate(ruta:any){ 
     this.router.navigateByUrl(ruta);
