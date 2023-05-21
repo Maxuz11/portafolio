@@ -27,6 +27,8 @@ import { ReportsComponent } from './components/admin/reports/reports.component';
 import { ViewvalorComponent } from './components/admin/viewvalor/viewvalor.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InicioGeneralComponent } from './components/inicio-general/inicio-general.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 
 
 
@@ -61,7 +63,8 @@ import { InicioGeneralComponent } from './components/inicio-general/inicio-gener
     HttpClientModule,
     FormsModule,
     RutModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SweetAlert2Module.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
