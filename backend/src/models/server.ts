@@ -4,6 +4,7 @@ import routascomen from "../routes/comentarios";
 import routauser from "../routes/login";
 //import routareset from "../routes/resetpass";
 import routacomuna from "../routes/comunas"
+import routavecino from "../routes/vecinos";
 // import routamunicipalidad from "../routes/municipalidad"
 import routajunta from "../routes/juntavecinal"
 
@@ -39,7 +40,8 @@ export class Server {
         this.app.use('/api/comunas', routacomuna);
         // this.app.use('/api/municipalidades', routamunicipalidad);
         this.app.use('/api/juntavecinal', routajunta);
-    }
+        this.app.use('/api/insertvecino', routavecino);
+    }   
     middlewares() {
         //parseo y lectura del body
         this.app.use(Express.json());

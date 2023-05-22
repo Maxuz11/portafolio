@@ -38,3 +38,23 @@ export interface Login{
   rut_representante: string,
   contrasenia: string
 }
+
+export interface JuntaVecinal2 {
+  id_junta_vecinal: number;
+  razon_social: string;
+};
+
+export interface Vecino {
+  rut_vecino: string,
+  primer_nombre: string,
+  segundo_nombre: String,
+  primer_apellido: String,
+  segundo_apellido: String,
+  direccion: String,
+  correo_electronico: String,
+  telefono: Number;
+  contrasenia: String,
+  avatar:string,
+  ruta_evidencia: string,
+  fk_id_junta_vecinal: Number,
+};

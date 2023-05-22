@@ -1,5 +1,4 @@
-
-import { JuntaVecinal, Login, RepresentanteVecinal } from './../interfaces/modelos';
+import { JuntaVecinal, RepresentanteVecinal, Vecino } from './../interfaces/modelos';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -12,6 +11,7 @@ export class PostService {
     //variables para la url del backend
     private myAppUrl: string;
     private myApiUrl: string;
+    
   constructor(private http: HttpClient) { 
     this.myAppUrl = environment.endpoint;
     this.myApiUrl = 'api';
@@ -26,9 +26,10 @@ export class PostService {
       return this.http.post(`${this.myAppUrl}${this.myApiUrl}/juntavecinal/insercion`, Rep);
     }
 
-    login( log: Login):Observable <any>{
-      return this.http.post(`${this.myAppUrl}${this.myApiUrl}/users/ingresar`, log);
+    insertvecino(Vecino: Vecino): Observable<any> {
+      return this.http.post(`${this.myAppUrl}${this.myApiUrl}/insertvecino`, Vecino);
     }
+    
 }
 
 
