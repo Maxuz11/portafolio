@@ -131,14 +131,15 @@
                               <p>Debe adjuntar alguna evidencia de luz o agua para verificar su veracidad.</p>
                               <div class="col-sm-12"> <input class="form-control" type="file" id="formFile"></div>
                            </div> -->
+                           <hr>
                            <div class="col-md-1 mt-4 ">
                               <label for="avatar" class="form-label">Avatar</label>
-                              <select class="form-control" formControlName="selectedAvatar">
+                              <select class="form-control" formControlName="selectedAvatar" (change)="onChangeAvatar()">
                                  <option *ngFor="let avatar of avatars" [value]="avatar">{{ avatar }}</option>
                               </select>
                            </div>
                            <div *ngIf="parentForm.controls['selectedAvatar'].value" class="col-md-3 mt-1 mr-3">
-                              <img [src]="'../../../../assets/img/avatars'+selectedAvatar" alt="Avatar" class="avatar-image">
+                              <img [src]="'/assets/img/avatars/'+selectedAvatar" alt="Avatar" class="avatar-image">
                            </div>
                            <div class="col-12">
                               <button class="btn btn-primary w-100" type="submit" (click)="onSubmit()">Crear Cuenta</button>

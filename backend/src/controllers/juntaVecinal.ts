@@ -80,5 +80,20 @@ export const inserRep = async(req:Request, res : Response)=>{
     }
 };
 
+export const getJuntaVecinal = async (req: Request, res: Response) => {
+    try {
+      const fk_id_comuna = req.params.fk_id_comuna; // Obtener el ID de la comuna desde los parámetros de la URL
+      const listJuntaVecinal = await JuntaVecinal.findAll({
+        where: { fk_id_comuna }, // Filtrar por el ID de la comuna
+        attributes: ['id_junta_vecinal', 'razon_social'],
+      });
+      res.json({ listJuntaVecinal });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Ocurrió un error al obtener las juntas vecinales.' });
+      }
+};
+
+
 
    

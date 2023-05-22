@@ -5,6 +5,8 @@ import { login } from "../controllers/user";
  const router = Router();
 // //ruta para crear un nuevo usuario y para el login
 router.post('/ingresar', login);
+
+
 // router.get('/', verificarCorreo);
 // router.post('/reset', cambiarContrasena);
 // //exportamos la ruta

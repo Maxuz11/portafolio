@@ -258,51 +258,62 @@ export const Vecino = sequelize.define('Vecino', {
         autoIncrement: true
     },
     rut_vecino: {
-        type: DataTypes.STRING(10),
+        type: DataTypes.STRING,
         unique: true,
         allowNull: false,
     },
     primer_nombre: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING,
         allowNull: false,
     },
     segundo_nombre: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING,
         allowNull: false,
     },
     primer_apellido: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING,
         allowNull: false,
     },
     segundo_apellido: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING,
         allowNull: false,
     },
     direccion: {
-        type: DataTypes.STRING(80),
+        type: DataTypes.STRING,
         allowNull: false,
     },
     correo_electronico: {
-        type: DataTypes.STRING(60),
-        unique: true,
+        type: DataTypes.STRING,
+        // unique: true,
         allowNull: false,
     },
     telefono: {
-        type: DataTypes.STRING(12),
-        unique: true,
+        type: DataTypes.STRING,
         allowNull: true,
     },
     contrasenia: {
         type: DataTypes.INTEGER,
-        unique: true,
+        // unique: true,
         allowNull: false,
-        validate: {
-            isFiveDigits(value: Number) {
-              if (value.toString().length !== 5) {
-                throw new Error('La contraseña debe tener 5 dígitos');
-              }
-            }
-        }
+        // validate: {
+        //     isFiveDigits(value: Number) {
+        //       if (value.toString().length !== 5) {
+        //         throw new Error('La contraseña debe tener 5 dígitos');
+        //       }
+        //     }
+        // }
+    },
+    avatar:{
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    ruta_evidencia: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    fk_id_junta_vecinal:{
+        type: DataTypes.INTEGER,
+        allowNull: false
     },
     },
     {
@@ -310,6 +321,7 @@ export const Vecino = sequelize.define('Vecino', {
         timestamps: false,
         tableName: 'vecino'
 });
+ Vecino.belongsTo(JuntaVecinal, { foreignKey: 'fk_id_junta_vecinal' });
 
 export const Certificado = sequelize.define('Certificado', {
     id_certificado: { 

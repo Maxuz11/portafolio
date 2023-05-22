@@ -78,7 +78,7 @@ export class RegisterRepComponent implements OnInit {
 
   onChangeAvatar() {
     this.selectedAvatar = this.parentForm.controls['selectedAvatar'].value;
-  console.log(this.selectedAvatar);
+    console.log(this.selectedAvatar);
   }
 
   open_Modal(){

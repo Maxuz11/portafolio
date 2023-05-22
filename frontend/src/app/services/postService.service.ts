@@ -1,4 +1,4 @@
-import { JuntaVecinal, RepresentanteVecinal, Vecino } from './../interfaces/modelos';
+import { JuntaVecinal, Login, RepresentanteVecinal, Vecino } from './../interfaces/modelos';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -24,6 +24,10 @@ export class PostService {
 
     inserRep( Rep:RepresentanteVecinal): Observable <any>{
       return this.http.post(`${this.myAppUrl}${this.myApiUrl}/juntavecinal/insercion`, Rep);
+    }
+
+    login( log: Login):Observable <any>{
+      return this.http.post(`${this.myAppUrl}${this.myApiUrl}/users/ingresar`, log);
     }
 
     insertvecino(Vecino: Vecino): Observable<any> {

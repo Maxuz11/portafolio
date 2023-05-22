@@ -98,6 +98,7 @@ export class RegisterComponent implements OnInit {
 
   onChangeAvatar() {
     this.selectedAvatar = this.parentForm.controls['selectedAvatar'].value;
+    console.log(this.selectedAvatar)
   }
 
   onSubmit() {
