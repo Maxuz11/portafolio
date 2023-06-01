@@ -28,10 +28,11 @@ export const login = async (req :Request, res : Response)=>{
             respuesta = 'representante';
             const validPassword = await bcrypt.compare(cuerpo.contrasenia,EsRepre.contrasenia);
             if(validPassword === true){
+                const nombre = EsRepre.primer_nombre;
                 const token = jwt.sign({
                     rut_representante: cuerpo.rut_representante,
                         },process.env.SECRET_KEY || "secretkey"); // se le puede agregar que espere 1 hora para que expire {expiresIn: 60 * 60}
-                const alo = [] = [respuesta,token];
+                const alo = [] = [respuesta,nombre,token];
                 
                 return res.json({alo});
             }
@@ -67,7 +68,6 @@ export const login = async (req :Request, res : Response)=>{
     }
     
 };
-
 
 
 // // // es una funcion asincrona que recibe el request y el response de express

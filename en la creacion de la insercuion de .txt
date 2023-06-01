@@ -1,0 +1,16 @@
+//en la creacion de la insercuion de los datos
+const maxId = await getMaxIdProyecto('id_proyecto');
+
+//en el archivo queries.ts
+export const getMaxIdProyecto = async (idProyecto: string): Promise<number> => {
+    try {
+      const result = await Proyecto.max(idProyecto);
+  
+      const maxId: number = Number(result) || 0;
+  
+      return maxId + 1;
+    } catch (error) {
+      console.error('Error al obtener el máximo id del proyecto:', error);
+      throw error;
+    }
+};

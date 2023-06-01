@@ -1,0 +1,92 @@
+versiones instaladas en el poyecto---
+version de node-- v16.20.0
+version de angular-- v14.1.1
+
+------------backend------------------
+iniciamos el proyecto nuevo con npm init -y
+luego intalamos las dependencias 
+npm install express bcrypt cors dotenv jsonwebtoken sequelize oracledb
+npm install typescript --save-dev
+npm i nodemon --save-dev
+npx tsc --init
+npx tsc iniciador
+--------------------------
+inicializador del traductor y escucha
+npm run dev -- este es del nodemon
+npm run esc --- este es el traductor tsc
+----------- dependencias intaladas----------
+npm i --save-dev @types/jsonwebtoken
+npm i --save-dev @types/express
+npm i --save-dev @types/cors
+npm i --save-dev @types/bcrypt
+
+---------------------------------------------------------------------------------------
+------------frontend--------
+iniciamos nuevo proyecto
+inicializamos el serve con ng -serve --o
+instalacion de css npm i bootstrap@5.2.1
+-----------dependencias--------
+instalando npm install ngx-toastr --save
+instalnado npm install @angular/animations --save
+npm i ngx-toastr@15.0.0
+npm i @angular/animations@14.2.3
+
+-----------------------conceptos------------------------------------------------------
+env point:
+GET ---> devolver algo
+POST ----> agregar algo o manda algo
+
+---------
+
+install jquery: npm install jquery -save
+--no estamos usando select2 ya 
+Con XXXXXX es desuso
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+install select2: npm i select2 -save
+dejar como package el select2: seguir las instrucciones de esta pag https://www.npmjs.com/package/ng-select2 en en el package hay q --force
+iconos: npm install @fortawesome/angular-fontawesome -force, dudas ver este doc https://www.npmjs.com/package/@fortawesome/angular-fontawesome
+XXXXXXXXXXXXXXXXXXXXXXXXXxXX
+npm install rxjs
+
+
+install el la libreia de rut chileno 
+$npm i rut-chileno
+https://www.npmjs.com/package/rut-chileno
+
+install sweetAlert2 [Un parto]
+pagina offical https://sweetalert2.github.io/#examples
+repo y doc https://github.com/sweetalert2/ngx-sweetalert2/tree/main
+
+2 opciones hacer update a la version de angular 15 o cambiar una conficuracion de un archivo json 
+$npm install sweetalert2
+$npm install @sweetalert2/ngx-sweetalert2
+
+lugo importanr en imports: [SweetAlert2Module.forRoot()],
+para luego llamarlo desde el componente q se vaya a usar
+
+import Swal from 'sweetalert2';
+@Component({
+  selector: 'app-my-component',
+  template: `
+    <button (click)="showAlert()">Show Alert</button>
+  `,
+})
+export class MyComponent {
+  showAlert() {
+    Swal.fire('Hello!', 'This is a SweetAlert2 alert.');
+  }
+}
+
+---------------------------------------------------------
+skript de eliminacion y purga de las tablas en la bda 
+drop table "C##JUNTA_VECINAL"."actividad" cascade constraints PURGE;
+drop table "C##JUNTA_VECINAL"."certificado" cascade constraints PURGE;
+drop table "C##JUNTA_VECINAL"."comuna" cascade constraints PURGE;
+drop table "C##JUNTA_VECINAL"."junta_vecinal" cascade constraints PURGE;
+drop table "C##JUNTA_VECINAL"."municipalidad" cascade constraints PURGE;
+drop table "C##JUNTA_VECINAL"."proyecto" cascade constraints PURGE;
+drop table "C##JUNTA_VECINAL"."reporte" cascade constraints PURGE;
+drop table "C##JUNTA_VECINAL"."representante_vecinal" cascade constraints PURGE;
+drop table "C##JUNTA_VECINAL"."solicitud" cascade constraints PURGE;
+drop table "C##JUNTA_VECINAL"."valoracion" cascade constraints PURGE;
+drop table "C##JUNTA_VECINAL"."vecino" cascade constraints PURGE;
